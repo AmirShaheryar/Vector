@@ -1,7 +1,8 @@
 #include <iostream>
 using namespace std;
 
-class Vector {
+class Vector 
+{
 private:
     double* data;
     int size;
@@ -59,6 +60,28 @@ public:
         }
     }
 
+    void Insert(int index, double value) 
+    {
+        if (index < 0 || index > size) 
+        {
+            cout << "Index out of bounds\n";
+            return;
+        }
+
+        if (size == capacity) 
+        {
+            resize(capacity * 2);
+        }
+
+        for (int i = size; i > index; --i) 
+        {
+            data[i] = data[i - 1];
+        }
+
+        data[index] = value;
+        ++size;
+    }
+
     double& operator[](int index) 
     {
         return data[index];
@@ -70,7 +93,8 @@ public:
     }
 };
 
-int main() {
+int main() 
+{
     Vector vec;
 
     vec.Push(10.5);
@@ -78,13 +102,14 @@ int main() {
     vec.Push(30.7);
 
     cout << "Elements: ";
-    for (int i = 0; i < vec.getSize(); ++i) {
+    for (int i = 0; i < vec.getSize(); ++i) 
+    {
         cout << vec[i] << " ";
     }
     cout << "\n";
 
-    cout << "Size: " << vec.getSize() << " (Expected: 3)\n";
-    cout << "Capacity: " << vec.getCapacity() << " (Expected: 4)\n";
+    cout << "Size: " << vec.getSize() << "\n";
+    cout << "Capacity: " << vec.getCapacity() << "\n";
 
     return 0;
 }
