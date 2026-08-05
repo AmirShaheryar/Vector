@@ -115,6 +115,10 @@ int main()
     vec.Push(20.2);
     vec.Push(30.7);
 
+    vec.Insert(1, 15.0); 
+
+    vec.Erase(2);
+
     cout << "Elements: ";
     for (int i = 0; i < vec.getSize(); ++i) 
     {
@@ -122,8 +126,7 @@ int main()
     }
     cout << "\n";
 
-    cout << "Size: " << vec.getSize() << "\n";
-    cout << "Capacity: " << vec.getCapacity() << "\n";
+    cout << "Size: " << vec.getSize() << " (Expected: 3)\n";
 
     return 0;
 }
