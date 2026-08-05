@@ -51,6 +51,14 @@ public:
         ++size;
     }
 
+    void Pop() 
+    {
+        if (size > 0) 
+        {
+            size--;
+        }
+    }
+
     double& operator[](int index) 
     {
         return data[index];
