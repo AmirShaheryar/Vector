@@ -1,41 +1,82 @@
 #include <iostream>
 using namespace std;
+
 class Vector {
 private:
-        double* data;
-        int size;
+    double* data;
+    int size;
+    int capacity;
+
+    void resize(int newCapacity) 
+    {
+        double* newData = new double[newCapacity];
+        for (int i = 0; i < size; ++i) 
+        {
+            newData[i] = data[i];
+        }
+        delete[] data;
+        data = newData;
+        capacity = newCapacity;
+    }
+
 public:
-        Vector(int s) : size(s)
-        {
-            data = new double[size];
-        }
+    Vector(int cap = 2) : size(0), capacity(cap)
+    {
+        if (capacity <= 0) capacity = 2;
+        data = new double[capacity];
+    }
 
-        ~Vector() 
-        {
-            delete[] data;
-        }            
-        int getSize() const {
-            return size;
-        }
+    ~Vector() 
+    {
+        delete[] data;
+    }            
 
-        void Push(double value) {
-            if (size == 0) 
-            {
-                data = new double[1];
-                data[0] = value;
-                size = 1;
-            } 
-            else 
-            {
-                double* newData = new double[size + 1];
-                for (int i = 0; i < size; ++i) 
-                {
-                    newData[i] = data[i];
-                }
-                newData[size] = value;
-                delete[] data;
-                data = newData;
-                ++size;
-            }
+    int getSize() const 
+    {
+        return size;
+    }
+
+    int getCapacity() const 
+    {
+        return capacity;
+    }
+
+    void Push(double value) 
+    {
+        if (size == capacity) 
+        {
+            resize(capacity * 2);
         }
+        data[size] = value;
+        ++size;
+    }
+
+    double& operator[](int index) 
+    {
+        return data[index];
+    }
+
+    const double& operator[](int index) const 
+    {
+        return data[index];
+    }
 };
+
+int main() {
+    Vector vec;
+
+    vec.Push(10.5);
+    vec.Push(20.2);
+    vec.Push(30.7);
+
+    cout << "Elements: ";
+    for (int i = 0; i < vec.getSize(); ++i) {
+        cout << vec[i] << " ";
+    }
+    cout << "\n";
+
+    cout << "Size: " << vec.getSize() << " (Expected: 3)\n";
+    cout << "Capacity: " << vec.getCapacity() << " (Expected: 4)\n";
+
+    return 0;
+}
