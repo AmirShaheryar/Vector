@@ -128,5 +128,17 @@ int main()
 
     cout << "Size: " << vec.getSize() << " (Expected: 3)\n";
 
+    vec.Erase(1);
+
+    cout << "Elements: ";
+    for (int i = 0; i < vec.getSize(); ++i) 
+    {
+        cout << vec[i] << " ";
+    }
+    cout << "\n";
+
+    cout << "Size: " << vec.getSize() << " (Expected: 3)\n";
+
+
     return 0;
 }
