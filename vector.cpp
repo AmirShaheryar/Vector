@@ -126,7 +126,7 @@ int main()
     }
     cout << "\n";
 
-    cout << "Size: " << vec.getSize() << " (Expected: 3)\n";
+    cout << "Size: " << vec.getSize() << "\n";
 
     vec.Erase(1);
 
@@ -137,7 +137,7 @@ int main()
     }
     cout << "\n";
 
-    cout << "Size: " << vec.getSize() << " (Expected: 3)\n";
+    cout << "Size: " << vec.getSize() << "\n";
 
 
     return 0;
